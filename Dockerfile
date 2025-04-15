@@ -4,16 +4,16 @@ FROM node:16
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json for installing dependencies
+# Copy the package.json and package-lock.json files first to leverage Docker caching
 COPY back-end/package*.json ./back-end/
 
 # Set working directory to back-end so npm install runs correctly
 WORKDIR /usr/src/app/back-end
 
-# Install dependencies
+# Install dependencies (including express)
 RUN npm install
 
-# Copy the rest of the back-end folder
+# Copy the entire back-end folder (including server.js and other files)
 COPY back-end/ ./back-end/
 
 # Go back to root app directory for consistent CMD behavior
