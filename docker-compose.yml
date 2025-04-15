@@ -9,7 +9,7 @@ services:
       - "3000:3000"
     depends_on:
       db:
-        condition: service_healthy
+        condition: service_healthy  # Ensures app starts only if db is healthy
     environment:
       DB_HOST: db
       DB_USER: root
@@ -29,6 +29,12 @@ services:
       - db_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--host=localhost", "--password=password"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
 
 volumes:
   db_data:
