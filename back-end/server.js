@@ -2,6 +2,7 @@ const express = require("express");
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 
 require('dotenv').config();
 
@@ -25,6 +26,12 @@ db.connect((err) => {
   console.log("MySQL connected");
 });
 
+app.use(express.static(path.join(__dirname, '..', 'front-end')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..',  'front-end', 'index.html'));
+});
+
 app.post("/highscore", (req, res) => {
   const { username, score } = req.body;
 
@@ -38,7 +45,7 @@ app.post("/highscore", (req, res) => {
       console.error("Error inserting high score:", err);
       return res.status(500).json({ error: "Database error inserting high score" });
     }
-    
+
     console.log("High score saved:", result);
     res.status(201).json({ message: "High score saved successfully!" });
   });
