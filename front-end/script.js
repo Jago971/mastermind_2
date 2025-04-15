@@ -85,7 +85,8 @@ function getWrongPosition(guess, opponent) {
 function showResults(guess, opponent) {
   const right = getRightPosition(guess, opponent);
   const wrong = getWrongPosition(guess, opponent);
-  const resultsPins = resultsElements[MAX_TURNS - turn].querySelectorAll(".pin");
+  const resultsPins =
+    resultsElements[MAX_TURNS - turn].querySelectorAll(".pin");
 
   resultsPins.forEach((pin) => pin.classList.remove(...COLORS));
 
@@ -121,9 +122,16 @@ function enterGuess() {
 
   if (checkWin(currentGuess, opponent)) {
     alert("Congratulations! You guessed the correct combination!");
-    resetGame("win");
+    toggleCover();
+    setTimeout(() => {
+      resetGame("win");
+    }, 1000);
   } else if (turn >= MAX_TURNS) {
-    resetGame("lose");
+    alert("Game over! You're out of turns.");
+    toggleCover();
+    setTimeout(() => {
+      resetGame("lose");
+    }, 1000);
   } else {
     turn++;
     currentGuess = [];
@@ -134,7 +142,6 @@ function resetGame(outcome) {
   if (outcome === "win") {
     highscoreModal.classList.remove("hidden");
   } else {
-    alert("Game over! The correct combination was: " + opponent.join(", "));
     finalizeReset();
   }
 }
@@ -167,7 +174,6 @@ submitScoreButton.addEventListener("click", (event) => {
       })
       .then((data) => {
         alert(data.message);
-        location.reload();
       });
   } catch (err) {
     console.error("Error:", err);
