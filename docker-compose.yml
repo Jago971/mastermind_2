@@ -14,9 +14,6 @@ services:
       DB_USER: root
       DB_PASSWORD: password
       DB_NAME: mydatabase
-    volumes:
-      - ./back-end:/usr/src/app
-      - /usr/src/app/node_modules
 
   db:
     image: mariadb:latest
