@@ -15,8 +15,8 @@ services:
       DB_PASSWORD: password
       DB_NAME: mydatabase
     volumes:
-      - ./back-end:/usr/src/app  # Mount back-end directory (instead of the whole project)
-      - /usr/src/app/node_modules  # Persist node_modules inside the container
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
 
   db:
     image: mariadb:latest
