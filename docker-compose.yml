@@ -6,35 +6,25 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
-    depends_on:
-      db:
-        condition: service_healthy  # Ensures app starts only if db is healthy
+      - "80:80"
     environment:
-      DB_HOST: db
-      DB_USER: root
-      DB_PASSWORD: password
-      DB_NAME: mydatabase
+      - NODE_ENV=production
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - app-network
 
   db:
-    image: mariadb:latest
+    image: postgres:13
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
-    ports:
-      - "3306:3306"
+      POSTGRES_DB: mastermind_db
+      POSTGRES_USER: mastermind_user
+      POSTGRES_PASSWORD: mastermind_pass
     volumes:
-      - db_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    restart: always
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "--host=localhost", "--password=password"]
-      interval: 10s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
+    networks:
+      - app-network
 
-volumes:
-  db_data:
+networks:
+  app-network:
+    driver: bridge
