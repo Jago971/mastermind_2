@@ -1,20 +1,23 @@
-# Use an official Node.js image
+# Use an official Node.js runtime as a base image
 FROM node:16
 
-# Set working directory for back-end
+# Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy only back-end package files to install dependencies
-COPY back-end/package*.json ./
+# Copy the entire back-end folder (including package.json and server.js)
+COPY back-end/ ./back-end/
+
+# Set working directory to back-end so npm install runs correctly
+WORKDIR /usr/src/app/back-end
 
 # Install dependencies
 RUN npm install
 
-# Copy back-end source code
-COPY back-end/ ./
+# Go back to root app directory for consistent CMD behavior
+WORKDIR /usr/src/app
 
-# Expose app port
+# Expose the port your app runs on
 EXPOSE 3000
 
-# Start the server
+# Start the app
 CMD ["node", "back-end/server.js"]
