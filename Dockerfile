@@ -7,13 +7,17 @@ EXPOSE 3000
 
 FROM node:16 AS frontend-build
 WORKDIR /usr/src/app
-COPY front-end/ ./front-end/
+COPY front-end/package.json front-end/package-lock.json ./
 RUN npm install -g serve
+COPY front-end/ ./front-end/
 RUN cp -R front-end /usr/src/app/public
 
-FROM nginx:alpine
+FROM node:16
+WORKDIR /usr/src/app
 COPY --from=backend-build /usr/src/app /usr/src/app
-COPY --from=frontend-build /usr/src/app/public /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+COPY --from=frontend-build /usr/src/app/public /usr/src/app/public
+WORKDIR /usr/src/app/front-end
+RUN npm run build
+RUN npm install -g pm2
+EXPOSE 3000 8080
+CMD pm2 start /usr/src/app/server.js --name "backend" && pm2 serve /usr/src/app/public 8080 --name "frontend" && pm2 logs
