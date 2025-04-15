@@ -1,0 +1,15 @@
+# Node.js dependencies
+back-end/node_modules/
+front-end/node_modules/
+
+# Environment files
+back-end/.env
+front-end/.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor files
+.vscode/
+.idea/

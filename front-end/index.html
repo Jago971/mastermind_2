@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastermind</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <div class="board">
+        <div class="guess opponent">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="cover"></div>
+        </div>
+
+        <div class="guess guess10">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+        <div class="result result10">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+
+        <div class="guess guess9">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+        <div class="result result9">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+
+        <div class="guess guess8">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+        <div class="result result8">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+
+        <div class="guess guess7">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+        <div class="result result7">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+
+        <div class="guess guess6">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+        <div class="result result6">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+
+        <div class="guess guess5">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+        <div class="result result5">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+
+        <div class="guess guess4">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+        <div class="result result4">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+
+        <div class="guess guess3">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+        <div class="result result3">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+
+        <div class="guess guess2">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+        <div class="result result2">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+
+        <div class="guess guess1">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+        <div class="result result1">
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+          <div class="pin"></div>
+        </div>
+      </div>
+
+      <div class="choose">
+        <div class="pin red" data-color="red"></div>
+        <div class="pin yellow" data-color="yellow"></div>
+        <div class="pin orange" data-color="orange"></div>
+        <div class="pin green" data-color="green"></div>
+        <div class="pin blue" data-color="blue"></div>
+        <div class="pin purple" data-color="purple"></div>
+      </div>
+      <div class="buttons">
+        <button id="undo">UNDO</button>
+        <button id="enter">ENTER</button>
+      </div>
+      <div id="highscoreModal" class="modal hidden">
+        <div class="modal-content">
+          <h2 style="color: black;">🎉 You won! Submit your score</h2>
+          <form id="scoreForm">
+            <input type="text" id="username" placeholder="Enter your name" required />
+            <button type="submit" id="submitScore">Submit</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
