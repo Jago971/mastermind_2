@@ -1,196 +1,235 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  :root {
-    --color-board: rgb(65, 65, 100);
-    --color-board-2: rgb(40, 40, 80);
-    --color-cover: rgb(255, 125, 0);
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: white;
-  }
-  
-  main {
-    display: flex;
-    flex-direction: column;
-    gap:2vh;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .board {
-    border: solid 1px var(--color-board-2);
-    height: 80vh;
-    gap: 1vh;
-    padding: 1vh;
-    display: grid;
-    grid-template-areas:
-      "opponent ."
-      "guess10 result10"
-      "guess9 result9"
-      "guess8 result8"
-      "guess7 result7"
-      "guess6 result6"
-      "guess5 result5"
-      "guess4 result4"
-      "guess3 result3"
-      "guess2 result2"
-      "guess1 result1";
-    grid-template-columns: 4fr 1fr;
-    grid-template-rows: repeat(11, 1fr);
-    background-color: var(--color-board);
-    border-radius: 1vh;
-  }
-  
-  .guess {
-    padding: 0.5vh;
-    gap: 0.5vh;
-    aspect-ratio: 4/1;
-    display: flex;
-    justify-content: space-evenly;
-    border: 1px solid var(--color-board-2);
-    border-radius: 1vh;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  .result {
-    aspect-ratio: 1;
-    padding: 0.5vh;
-    gap: 0.5vh;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    border: 1px solid var(--color-board-2);
-    border-radius: 1vh;
-  }
-  
+:root {
+  --color-board: rgb(65, 65, 100);
+  --color-board-2: rgb(40, 40, 80);
+  --color-cover: rgb(255, 125, 0);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: white;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.board {
+  border: solid 1px var(--color-board-2);
+  height: 80vh;
+  gap: 1vh;
+  padding: 1vh;
+  display: grid;
+  grid-template-areas:
+    "opponent ."
+    "guess10 result10"
+    "guess9 result9"
+    "guess8 result8"
+    "guess7 result7"
+    "guess6 result6"
+    "guess5 result5"
+    "guess4 result4"
+    "guess3 result3"
+    "guess2 result2"
+    "guess1 result1";
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: repeat(11, 1fr);
+  background-color: var(--color-board);
+  border-radius: 1vh;
+}
+
+.guess {
+  padding: 0.5vh;
+  gap: 0.5vh;
+  aspect-ratio: 4/1;
+  display: flex;
+  justify-content: space-evenly;
+  border: 1px solid var(--color-board-2);
+  border-radius: 1vh;
+}
+
+.result {
+  aspect-ratio: 1;
+  padding: 0.5vh;
+  gap: 0.5vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  border: 1px solid var(--color-board-2);
+  border-radius: 1vh;
+}
+
+.pin {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.right {
+  background-color: white;
+}
+.wrong {
+  background-color: red;
+}
+
+.red {
+  background-color: rgb(180, 0, 0);
+}
+
+.yellow {
+  background-color: rgb(240, 220, 0);
+}
+
+.orange {
+  background-color: rgb(255, 130, 0);
+}
+
+.green {
+  background-color: rgb(0, 160, 0);
+}
+
+.blue {
+  background-color: rgb(0, 90, 200);
+}
+
+.purple {
+  background-color: rgb(120, 0, 150);
+}
+
+.inactive .pin {
+  display: none;
+}
+
+.opponent {
+  grid-area: opponent;
+  position: relative;
+}
+
+.cover {
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  border-radius: 1.5vh 1.5vh 0 0;
+  background-color: var(--color-cover);
+  height: calc(100% + 2px);
+  width: calc(100% + 2px);
+}
+
+.guess1 {
+  grid-area: guess1;
+}
+.guess2 {
+  grid-area: guess2;
+}
+.guess3 {
+  grid-area: guess3;
+}
+.guess4 {
+  grid-area: guess4;
+}
+.guess5 {
+  grid-area: guess5;
+}
+.guess6 {
+  grid-area: guess6;
+}
+.guess7 {
+  grid-area: guess7;
+}
+.guess8 {
+  grid-area: guess8;
+}
+.guess9 {
+  grid-area: guess9;
+}
+.guess10 {
+  grid-area: guess10;
+}
+
+.result1 {
+  grid-area: result1;
+}
+.result2 {
+  grid-area: result2;
+}
+.result3 {
+  grid-area: result3;
+}
+.result4 {
+  grid-area: result4;
+}
+.result5 {
+  grid-area: result5;
+}
+.result6 {
+  grid-area: result6;
+}
+.result7 {
+  grid-area: result7;
+}
+.result8 {
+  grid-area: result8;
+}
+.result9 {
+  grid-area: result9;
+}
+.result10 {
+  grid-area: result10;
+}
+
+.choose {
+  background-color: var(--color-board);
+  height: 7.5vh;
+  aspect-ratio: 6/1;
+  border-radius: 1vh;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1vh;
   .pin {
-    aspect-ratio: 1;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
+    cursor: pointer;
   }
+}
 
-  .right {
-    background-color: white;
-  }
-  .wrong {
-    background-color: red;
-  }
-  
-  .red {
-    background-color: rgb(180, 0, 0);
-  }
-  
-  .yellow {
-    background-color: rgb(240, 220, 0);
-  }
-  
-  .orange {
-    background-color: rgb(255, 130, 0);
-  }
-  
-  .green {
-    background-color: rgb(0, 160, 0);
-  }
-  
-  .blue {
-    background-color: rgb(0, 90, 200);
-  }
-  
-  .purple {
-    background-color: rgb(120, 0, 150);
-  }
-  
-  .inactive .pin {
-    display: none;
-  }
-  
-  .opponent {
-    grid-area: opponent;
-    position: relative;
-  }
-  
-  /* .cover {
-    position: absolute;
-    bottom: -1px;
-    left: -1px;
-    border-radius: 1.5vh 1.5vh 0 0;
-    background-color: var(--color-cover);
-    height: calc(100% + 2px);
-    width: calc(100% + 2px);
-  } */
-  
-  /* Grid areas for each guess */
-  .guess1  { grid-area: guess1; }
-  .guess2  { grid-area: guess2; }
-  .guess3  { grid-area: guess3; }
-  .guess4  { grid-area: guess4; }
-  .guess5  { grid-area: guess5; }
-  .guess6  { grid-area: guess6; }
-  .guess7  { grid-area: guess7; }
-  .guess8  { grid-area: guess8; }
-  .guess9  { grid-area: guess9; }
-  .guess10 { grid-area: guess10; }
-  
-  /* Grid areas for each result */
-  .result1  { grid-area: result1; }
-  .result2  { grid-area: result2; }
-  .result3  { grid-area: result3; }
-  .result4  { grid-area: result4; }
-  .result5  { grid-area: result5; }
-  .result6  { grid-area: result6; }
-  .result7  { grid-area: result7; }
-  .result8  { grid-area: result8; }
-  .result9  { grid-area: result9; }
-  .result10 { grid-area: result10; }
+.buttons {
+  display: flex;
+  gap: 1vh;
+}
 
-  .choose {
-    background-color: var(--color-board);
-    height: 7.5vh;
-    aspect-ratio: 6/1;
-    border-radius: 1vh;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 1vh;
-    .pin {
-        cursor: pointer;
-    }
-  }
+.hidden {
+  transition: height 0.5s ease-out;
+  height: 0.5rem;
+}
 
-  .buttons {
-    display: flex;
-    gap: 1vh;
-  }
-
-  .hidden {
-    transition: height 0.5s ease-out;
-    height: 0.5rem;
-  }
-
-  .modal {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .modal-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-  }
-  .hidden {
-    display: none;
-  }
-  
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+}
+.hidden {
+  display: none;
+}
