@@ -22,5 +22,7 @@ WORKDIR /usr/src/app
 # Expose the port your app runs on
 EXPOSE 3000
 
+RUN npm list express
+
 # Start the app
 CMD ["node", "back-end/server.js"]
