@@ -15,11 +15,12 @@ services:
       - app-network
 
   db:
-    image: postgres:13
+    image: mariadb:latest
     environment:
-      POSTGRES_DB: mastermind_db
-      POSTGRES_USER: mastermind_user
-      POSTGRES_PASSWORD: mastermind_pass
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: mastermind_db
+      MYSQL_USER: mastermind_user
+      MYSQL_PASSWORD: mastermind_pass
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
