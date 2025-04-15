@@ -1,27 +1,20 @@
-# Use an official Node.js runtime as a base image
+# Use an official Node.js image
 FROM node:16
 
-# Set the working directory inside the container
+# Set working directory for back-end
 WORKDIR /usr/src/app
 
-# Copy the package.json and package-lock.json (if you have it) into the container
+# Copy only back-end package files to install dependencies
 COPY back-end/package*.json ./
 
-# Install the dependencies
+# Install dependencies
 RUN npm install
 
-# Copy the rest of your application code into the container
-COPY . .
+# Copy back-end source code
+COPY back-end/ ./
 
-# Expose the port your app will run on (adjust if needed)
+# Expose app port
 EXPOSE 3000
 
-# Set environment variables (you could also pass these during runtime)
-ENV DB_HOST=your-db-host
-ENV DB_USER=your-db-user
-ENV DB_PASSWORD=your-db-password
-ENV DB_NAME=your-db-name
-ENV DB_PORT=3306
-
-# Command to run your app
-CMD ["node", "back-end/server.js"]
+# Start the server
+CMD ["node", "server.js"]
