@@ -174,6 +174,7 @@ submitScoreButton.addEventListener("click", (event) => {
       })
       .then((data) => {
         alert(data.message);
+        window.location.reload();
       });
   } catch (err) {
     console.error("Error:", err);
