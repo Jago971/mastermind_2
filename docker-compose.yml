@@ -7,8 +7,16 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+      - "8080:8080"
     environment:
+      - DB_HOST=db
+      - DB_USER=mastermind_user
+      - DB_PASSWORD=mastermind_pass
+      - DB_NAME=mastermind_db
+      - DB_PORT=3306
       - NODE_ENV=production
+    volumes:
+      - .:/usr/src/app
     networks:
       - app-network
 
