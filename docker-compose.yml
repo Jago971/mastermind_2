@@ -8,14 +8,15 @@ services:
     ports:
       - "3000:3000"  # Expose your app on port 3000
     depends_on:
-      - db  # Make sure MariaDB is ready before starting the app
+      - db  # Ensure DB container is up first, but still need to wait for DB readiness
     environment:
       DB_HOST: db
       DB_USER: root
       DB_PASSWORD: password
       DB_NAME: mydatabase
     volumes:
-      - .:/usr/src/app  # Mount the local directory inside the container for live changes
+      - ./back-end:/usr/src/app  # Mount back-end directory (instead of the whole project)
+      - /usr/src/app/node_modules  # Persist node_modules inside the container
 
   db:
     image: mariadb:latest
