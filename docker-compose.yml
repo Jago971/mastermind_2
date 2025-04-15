@@ -6,16 +6,16 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"  # Expose your app on port 3000
+      - "3000:3000"
     depends_on:
-      - db  # Ensure DB container is up first, but still need to wait for DB readiness
+      - db
     environment:
       DB_HOST: db
       DB_USER: root
       DB_PASSWORD: password
       DB_NAME: mydatabase
     volumes:
-      - .:/usr/src/app
+      - ./back-end:/usr/src/app
       - /usr/src/app/node_modules
 
   db:
@@ -26,9 +26,9 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
-      - "3306:3306"  # Expose MariaDB on port 3306 (optional, for debugging)
+      - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql  # Persist data across container restarts
+      - db_data:/var/lib/mysql
 
 volumes:
-  db_data:  # Define a volume to persist MariaDB data
+  db_data:
