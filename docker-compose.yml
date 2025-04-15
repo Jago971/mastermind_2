@@ -1,25 +1,33 @@
-version: '3'
+version: '3.8'
+
 services:
-  backend:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-      target: backend
     ports:
-      - "3000:3000"
-    networks:
-      - mastermind-net
+      - "3000:3000"  # Expose your app on port 3000
+    depends_on:
+      - db  # Make sure MariaDB is ready before starting the app
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: password
+      DB_NAME: mydatabase
+    volumes:
+      - .:/usr/src/app  # Mount the local directory inside the container for live changes
 
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: frontend
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
     ports:
-      - "80:80"
-    networks:
-      - mastermind-net
+      - "3306:3306"  # Expose MariaDB on port 3306 (optional, for debugging)
+    volumes:
+      - db_data:/var/lib/mysql  # Persist data across container restarts
 
-networks:
-  mastermind-net:
-    driver: bridge
+volumes:
+  db_data:  # Define a volume to persist MariaDB data

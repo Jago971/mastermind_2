@@ -1,30 +1,27 @@
-FROM node:16 AS backend
+# Use an official Node.js runtime as a base image
+FROM node:16
 
-WORKDIR /app
+# Set the working directory inside the container
+WORKDIR /usr/src/app
 
-COPY back-end/package.json back-end/package-lock.json ./
+# Copy the package.json and package-lock.json (if you have it) into the container
+COPY back-end/package*.json ./
+
+# Install the dependencies
 RUN npm install
 
-COPY back-end/ .
+# Copy the rest of your application code into the container
+COPY . .
 
-FROM node:16 AS frontend
-
-WORKDIR /app
-
-COPY front-end/package.json front-end/package-lock.json ./
-RUN npm install
-
-COPY front-end/ .
-
-RUN npm run build
-
-FROM nginx:alpine
-
-COPY --from=frontend /app/build /usr/share/nginx/html
-
-COPY --from=backend /app /app
-
-EXPOSE 80
+# Expose the port your app will run on (adjust if needed)
 EXPOSE 3000
 
-CMD ["nginx", "-g", "daemon off;"]
+# Set environment variables (you could also pass these during runtime)
+ENV DB_HOST=your-db-host
+ENV DB_USER=your-db-user
+ENV DB_PASSWORD=your-db-password
+ENV DB_NAME=your-db-name
+ENV DB_PORT=3306
+
+# Command to run your app
+CMD ["node", "back-end/server.js"]
